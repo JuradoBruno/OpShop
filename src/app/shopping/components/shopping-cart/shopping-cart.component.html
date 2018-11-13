@@ -1,0 +1,46 @@
+<h1>Shopping Cart</h1>
+<p *ngIf="cart">
+  There is {{productQuantity}} items in your cart
+  <button
+    *ngIf="cart.products.length"
+    class="btn btn-light btn-small" (click)="clearCart()">Clear Shopping Cart
+</button>
+</p>
+<div class="row col-10">  
+    <table class="table">
+    <thead>
+    <tr>
+        <th></th>
+        <th sortable-collumn>Product</th>
+        <th class="text-center" style="width: 230px">Quantity</th>
+        <th class="text-right" style="width: 200px">Total Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let p of cart.products">
+        <td>
+            <div [style.backgroundImage]="'url(' + p.imageUrl + ')'" class="thumbnail" alt=""></div>
+        </td>
+        <td>{{p.title}}</td>
+        <td>
+            <product-quantity [product]="p" [shoppingCart]="cart" *ngIf="cart">                  
+            </product-quantity>
+        </td>
+        <td class="text-right">{{this.cart.getTotalPriceItem(p) | currency:'EUR'}}</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th class="text-right">
+        Total : {{this.cart.getTotalPrice() | currency:'EUR'}}            
+        </th>
+    </tr>
+    </tfoot>
+    </table>
+    <a 
+        *ngIf="cart.products.length"
+        class="btn btn-primary" routerLink="/check-out">Check Out</a>
+</div>

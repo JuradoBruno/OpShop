@@ -1,0 +1,49 @@
+<div class="col">
+    <div class="row">
+        <table class="table" *ngIf="orders$ | async as orders">
+            <thead>
+                <tr>
+                    <th class="font-bold">Customer</th>
+                    <th class="font-bold">Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let o of orders">
+                    <td>{{o.shipping.name}}</td>
+                    <td>{{o.datePlaced}}</td>
+                    <td>
+                        <a [routerLink]="">view</a>
+                    </td>
+                </tr>
+            </tbody>
+            <button class="btn btn-success" (click)=getOrderByUser()>
+                Filter by user
+            </button>
+        </table>                
+    </div>
+    <div class="row">
+        <div class="row">
+            <table class="table" *ngIf="orderByUser$ | async as orderByUser">
+                <thead>
+                    <tr>
+                        <th class="font-bold">Customer</th>
+                        <th class="font-bold">Date</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let o of orderByUser">
+                        <td>{{o.shipping.name}}</td>
+                        <td>{{o.datePlaced}}</td>
+                        <td>
+                            <a [routerLink]="">view</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>                
+        </div>
+    </div>
+</div>
+
+
