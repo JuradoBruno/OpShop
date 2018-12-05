@@ -16,6 +16,8 @@ import { MatTableModule } from '@angular/material';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddressDisplayComponent } from './components/address-display/address-display.component';
+import { GeneralMappingService } from './services/general-mapping.service';
 
 @NgModule({
   imports: [
@@ -28,11 +30,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule.forRoot(),
   ],
   declarations: [    
+    AddressDisplayComponent,
     ProductCardComponent,
     ProductQuantityComponent,
   ],
   exports: [
     CommonModule,
+    AddressDisplayComponent,
     ProductCardComponent,
     ProductQuantityComponent,
     FormsModule,
@@ -43,6 +47,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule.forRoot().ngModule,
   ],
   providers: [
+    GeneralMappingService,
     AuthService,
     AuthGuard,
     UserService,

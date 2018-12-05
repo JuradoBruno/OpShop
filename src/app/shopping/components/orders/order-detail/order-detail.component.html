@@ -1,0 +1,18 @@
+<div class="card" style="margin-bottom: 20px" *ngIf="order">
+  <div class="card-header">
+      Command n°{{order.id}}
+  </div>
+  <div class="card-body">
+    <div class="row">  
+
+      <div class="col">
+        <order-summary [order]="order"></order-summary>
+      </div>
+    
+      <div class="col">
+        <address-display [order]="order">
+        </address-display>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<h2>Your order has been successfully placed!</h2>
+<div class="row" *ngIf="order">
+  <div class="col">
+    <order-summary [order]="order"></order-summary>
+  </div>
+
+  <div class="col">
+    <address-display [order]="order"></address-display>
+  </div>
+</div>

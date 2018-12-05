@@ -5,7 +5,7 @@ import * as firebase from 'firebase';
 import { ActivatedRoute } from '@angular/router';
 import { AppUser } from 'shared/models/app-user';
 import { Observable, of } from 'rxjs';
-import { switchMap, map } from 'rxjs/operators';
+import { switchMap, map, take } from 'rxjs/operators';
 import { UserService } from 'shared/services/user.service';
 
 
@@ -44,6 +44,13 @@ export class AuthService {
         return of(null);
       } )
       );
+  }
+
+  get userId$(){
+    return this.user$.pipe(switchMap(user => {
+      if (user) return user.uid;
+      return of(null);
+    }));
   }
 
 

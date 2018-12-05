@@ -6,6 +6,7 @@ import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 import { AuthService } from 'shared/services/auth.service';
 import { OrderService } from 'shared/services/order.service';
 import { Router } from '@angular/router';
+import { Shipping } from 'shared/models/shipping';
 
 @Component({
   selector: 'shipping-form',
@@ -16,7 +17,13 @@ export class ShippingFormComponent implements OnInit, OnDestroy{
 
   @Input('cart') cart: ShoppingCart;
   
-  shipping = {}; 
+  shipping: Shipping = {
+    name:'',    
+    addressLine1: '',
+    addressLine2: '',
+    city: ''
+  };
+  
   UserSubscription: Subscription;
   userId: string;
 
@@ -35,6 +42,7 @@ export class ShippingFormComponent implements OnInit, OnDestroy{
     let order = new Order(this.userId, this.shipping, this.cart);
     console.log(order);
     let result = await this.orderService.placeOrder(order, this.cart);
+
     this.router.navigate(['/order-success', result.id])
   }
   

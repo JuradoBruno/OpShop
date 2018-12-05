@@ -1,0 +1,26 @@
+<div class="card" *ngIf="order">
+  <div class="card-body">
+    <p class="card-text" *ngIf="cart.productQuantity() > 1">This order contains {{cart.productQuantity()}} items.</p>
+    <p class="card-text" *ngIf="cart.productQuantity() === 1">This order contain {{cart.productQuantity()}} item.</p>
+    <p class="class-text">Date: {{order.datePlaced}}</p>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" *ngFor="let p of order.shoppingCart.products">
+        <div class="row">
+          <div class="col">
+              <div [style.backgroundImage]="'url(' + p.imageUrl + ')'" class="thumbnail" alt=""></div>
+          </div>
+          <div class="col"> {{p.quantity}} x {{p.title}} </div>
+          <div class="col">
+            <div class="float-right">{{p.price*p.quantity | currency:'EUR':'symbol'}}</div>
+            </div>
+        </div>
+      </li>
+      <li class="list-group-item font-weight-bold">
+        Total Price
+          <div class="float-right">
+            {{cart.getTotalPrice() | currency:'EUR':'symbol'}}
+          </div>
+      </li>
+    </ul>
+  </div>
+</div>

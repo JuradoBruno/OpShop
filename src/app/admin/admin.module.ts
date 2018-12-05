@@ -9,6 +9,7 @@ import { SharedModule } from 'shared/shared.module';
 import { MatTableModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from 'shared/services/auth-guard.service';
+import { OrderDetailComponent } from 'app/shopping/components/orders/order-detail/order-detail.component';
 
 @NgModule({
   imports: [    
@@ -18,6 +19,7 @@ import { AuthGuard } from 'shared/services/auth-guard.service';
       { path: 'admin/products/:id', component: ProductFormComponent, canActivate:[AuthGuard, AdminAuthGuard]},
       { path: 'admin/products', component: AdminProductsComponent, canActivate:[AuthGuard, AdminAuthGuard]},
       { path: 'admin/orders', component: AdminOrdersComponent, canActivate:[AuthGuard, AdminAuthGuard]},
+      { path: 'admin/orders/:id', component: OrderDetailComponent, canActivate:[AuthGuard, AdminAuthGuard]},
     ]),
   ],
   declarations: [
